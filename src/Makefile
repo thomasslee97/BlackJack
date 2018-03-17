@@ -1,5 +1,5 @@
 IDIR=../include
-CC=gcc
+CC=g++
 CFLAGS=-I$(IDIR)
 
 ODIR=../obj
@@ -7,14 +7,14 @@ LDIR=../lib
 
 #LIBS=-lm
 
-_DEPS=blackjack.h
+_DEPS=blackjack.hpp
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJ=blackjack.o blackjackfunc.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
-$(ODIR)/%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+$(ODIR)/%.o: %.cpp $(DEPS)
+	$(CC) -std=c++11 -c -o $@ $< $(CFLAGS)
 
 blackjack: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
